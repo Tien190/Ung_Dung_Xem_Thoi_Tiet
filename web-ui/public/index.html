@@ -1,3 +1,51 @@
-<!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><title>Web UI</title></head>
-<body><h1>Web UI</h1><p>Kh?i t?o th� m?c.</p></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>MultiFile Downloader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../src/style.css">
+</head>
+<body>
+  <header>
+    <h1>MultiFile Downloader</h1>
+    <p>Mô-đun thử nghiệm: Tải nhiều tệp từ web về máy chủ & quản lý realtime - Giao diện Demo</p>
+  </header>
+
+  <main>
+    <section class="input-section">
+      <h3>Danh sách URL cần tải</h3>
+      <div id="urlList"></div>
+      <div class="row">
+        <button id="addUrl">+ Thêm ô URL</button>
+        <button id="startAll" class="ok">⬇️ Bắt đầu tải tất cả</button>
+      </div>
+      <div id="msgArea"></div>
+    </section>
+
+    <section>
+      <h3>Danh sách tác vụ tải</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Tên file</th>
+            <th>Trạng thái</th>
+            <th>Tiến độ</th>
+            <th>Kích thước</th>
+            <th>Điều khiển</th>
+            <th>Tải về</th>
+            <th>Xóa</th>
+          </tr>
+        </thead>
+        <tbody id="tasksBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <small>&copy; 2026 Demo bởi <b>MultiFile Team</b></small>
+  </footer>
+
+  <script src="../src/app.js"></script>
+</body>
+</html>

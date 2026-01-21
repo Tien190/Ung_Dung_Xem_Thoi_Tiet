@@ -7,9 +7,14 @@ from backend.config import CHUNK_SIZE
 def download_file(task, folder):
     task.status = DownloadStatus.DOWNLOADING
     filepath = os.path.join(folder, task.filename)
-
+    headers = { # Dùng user-agent của trình duyệt phổ biến
+    "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                   "AppleWebKit/537.36 (KHTML, like Gecko) "
+                   "Chrome/120.0.0.0 Safari/537.36"),
+    "Referer": "https://pixabay.com/",
+}
     try:
-        with requests.get(task.url, stream=True) as r:
+        with requests.get(task.url, headers=headers, stream=True) as r:
             r.raise_for_status()
             task.total_size = int(r.headers.get("Content-Length", 0))
             downloaded = 0
@@ -29,5 +34,8 @@ def download_file(task, folder):
 
         task.status = DownloadStatus.COMPLETED
 
-    except Exception:
+    except Exception as e:
+        print(">>> DOWNLOAD ERROR for task", task.filename, ":", e)
+        import traceback
+        traceback.print_exc()
         task.status = DownloadStatus.ERROR
