@@ -13,3 +13,5 @@ $dirs | ForEach-Object {
   New-Item -ItemType Directory -Force -Path $_ | Out-Null
   Set-Content -Path (Join-Path $_ '.gitignore') -Value '# keep directory'
 }
+
+git rm --cached ../backend/__pycache__/*.pyc
